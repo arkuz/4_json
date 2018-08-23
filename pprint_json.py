@@ -30,9 +30,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
     filepath = os.path.abspath(args.file)
 
-    data = load_data(filepath)
-    if data is None:
+    data_object = load_data(filepath)
+    if data_object is None:
         print("Load error. JSON file is incorrect.")
         exit()
 
-    pretty_print_json(data)
+    pretty_print_json(data_object)
