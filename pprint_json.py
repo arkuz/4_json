@@ -1,6 +1,7 @@
 import json
 import argparse
 import os
+import sys
 
 
 def create_arg_parser():
@@ -16,8 +17,8 @@ def load_data(filepath):
             return None
 
 
-def pretty_print_json(data):
-    formated_json = json.dumps(data,
+def pretty_print_json(data_object):
+    formated_json = json.dumps(data_object,
                                indent=2,
                                ensure_ascii=False)
     print(formated_json)
@@ -32,7 +33,6 @@ if __name__ == '__main__':
 
     data_object = load_data(filepath)
     if data_object is None:
-        print("Load error. JSON file is incorrect.")
-        exit()
+        sys.exit("Load error. JSON file is incorrect.")
 
     pretty_print_json(data_object)
