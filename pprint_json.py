@@ -3,17 +3,15 @@ import argparse
 import os
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("file", help="Path of JSON file")
-args = parser.parse_args()
-filepath = os.path.abspath(args.file)
+def create_arg_parser():
+    return argparse.ArgumentParser()
 
 
 def load_data(filepath):
     with open(filepath, 'r') as file:
         try:
-            json_file = json.load(file)
-            return json_file
+            file_object = json.load(file)
+            return file_object
         except json.decoder.JSONDecodeError:
             return None
 
@@ -26,6 +24,12 @@ def pretty_print_json(data):
 
 
 if __name__ == '__main__':
+
+    parser = create_arg_parser()
+    parser.add_argument("file", help="Path of JSON file")
+    args = parser.parse_args()
+    filepath = os.path.abspath(args.file)
+
     data = load_data(filepath)
     if data is None:
         print("Load error. JSON file is incorrect.")
